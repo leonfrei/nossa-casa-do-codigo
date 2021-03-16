@@ -7,6 +7,8 @@ plugins {
     id("io.micronaut.application") version "1.4.2"
 }
 
+apply(plugin = "kotlin-jpa")
+
 version = "0.1"
 group = "br.com.zup"
 
@@ -36,7 +38,7 @@ dependencies {
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 //JPA
-    runtime("io.micronaut.sql:micronaut-jdbc-hikari")
+    runtimeOnly("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("org.postgresql:postgresql:42.2.18")
 }
