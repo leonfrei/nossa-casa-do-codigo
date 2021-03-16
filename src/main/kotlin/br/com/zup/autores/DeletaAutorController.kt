@@ -7,11 +7,11 @@ import io.micronaut.http.annotation.PathVariable
 import javax.transaction.Transactional
 
 @Controller("/autores/{id}")
-open class DeletaAutorController(val autorRepository: AutorRepository) {
+class DeletaAutorController(val autorRepository: AutorRepository) {
 
     @Delete
     @Transactional
-    open fun deleta(@PathVariable id: Long): HttpResponse<Any>{
+    fun deleta(@PathVariable id: Long): HttpResponse<Any>{
         val possivelAutor = autorRepository.findById(id)
         if (possivelAutor.isEmpty) {
             return HttpResponse.notFound()

@@ -5,9 +5,20 @@ plugins {
     id("org.jetbrains.kotlin.plugin.jpa") version "1.4.10"
     id("com.github.johnrengelman.shadow") version "6.1.0"
     id("io.micronaut.application") version "1.4.2"
+//    id("org.jetbrains.kotlin.plugin.noarg") version "%kotlinVersion%"
 }
 
+apply(plugin = "kotlin-noarg")
 apply(plugin = "kotlin-jpa")
+apply(plugin = "kotlin-allopen")
+
+allOpen {
+    annotation("io.micronaut.http.annotation.Controller")
+}
+
+noArg {
+    annotation("com.my.Annotation")
+}
 
 version = "0.1"
 group = "br.com.zup"
@@ -43,7 +54,6 @@ dependencies {
     implementation("org.postgresql:postgresql:42.2.18")
 }
 
-
 application {
     mainClass.set("br.com.zup.ApplicationKt")
 }
@@ -62,6 +72,4 @@ tasks {
             jvmTarget = "11"
         }
     }
-
-
 }

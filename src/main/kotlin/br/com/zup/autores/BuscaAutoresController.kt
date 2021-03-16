@@ -7,11 +7,11 @@ import io.micronaut.http.annotation.QueryValue
 import javax.transaction.Transactional
 
 @Controller("/autores")
-open class BuscaAutoresController(val autorRepository: AutorRepository) {
+class BuscaAutoresController(val autorRepository: AutorRepository) {
 
     @Get
     @Transactional
-    open fun lista(@QueryValue(defaultValue = "") email: String): HttpResponse<Any> {
+    fun lista(@QueryValue(defaultValue = "") email: String): HttpResponse<Any> {
         if (email.isBlank()) {
             val autores = autorRepository.findAll()
             val resposta = autores.map { autor -> DetalhesDoAutorResponse(autor) }
